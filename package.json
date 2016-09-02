@@ -2,7 +2,7 @@
   "name": "Gulp-DCC2016-10",
   "version": "1.0.0",
   "description": "sample code and files to demonstrate Gulp.js at Desert Code Camp 2016",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,6 +10,10 @@
   "license": "ISC",
   "devDependencies": {
     "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.1.0",
     "gulp-util": "^3.0.7"
+  },
+  "dependencies": {
+    "express": "^4.14.0"
   }
 }
