@@ -9,16 +9,16 @@ gulp.task('default', function() {
   return util.log('Testing if Gulp is setup and working, it is if you see this!')
 });
 
-gulp.task('server:start', function () {
+gulp.task('server:start', ['html'], function () {
   nodemon( { script: './server.js' } );
 });
 
-gulp.task('cleanhtml', function () {
-  gulp.src(['public/*','!readme.md'], {read:false})
+gulp.task('clean:html', function () {
+  gulp.src(['public/*.*','!public/readme.md'], {read:false})
   .pipe(clean());
 });
 
-gulp.task('html', 'cleanhtml', function  () {
+gulp.task('html', ['clean:html'], function  () {
   gulp.src('source/**/*.html')
   .pipe(gulp.dest('public'));
 });
