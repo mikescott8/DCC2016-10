@@ -1,18 +1,15 @@
 // grab our gulp packages
 var gulp  = require('gulp');
-var util = require('gulp-util');
-var nodemon = require('gulp-nodemon');
-var clean = require('gulp-clean');
-var less = require('gulp-less');
+var plugins = require('gulp-load-plugins')();
 
 // create a default task and just log a message
 gulp.task('default', function() {
-  return util.log('Testing if Gulp is setup and working, it is if you see this!')
+  return plugins.util.log('Testing if Gulp is setup and working, it is if you see this!')
 });
 
 gulp.task('build:less', ['clean:css'], function() {
   gulp.src('source/style/vendor/bootstrap-less/bootstrap.less')
-  .pipe(less())
+  .pipe(plugins.less())
   .pipe(gulp.dest('public/css'))
 });
 
@@ -22,7 +19,7 @@ gulp.task('copy:bootstrapjs', function() {
 });
 
 gulp.task('server:start', ['clean', 'html', 'build:less', 'copy:bootstrapjs'], function () {
-  nodemon( { script: './server.js' } );
+  plugins.nodemon( { script: './server.js' } );
 });
 
 gulp.task('clean', ['clean:css', 'clean:js', 'clean:html'], function () {
@@ -31,17 +28,17 @@ gulp.task('clean', ['clean:css', 'clean:js', 'clean:html'], function () {
 
 gulp.task('clean:css', function () {
   gulp.src('public/css/**/*', {read:false})
-  .pipe(clean());
+  .pipe(plugins.clean());
 });
 
 gulp.task('clean:js', function () {
   gulp.src('public/js/**/*', {read:false})
-  .pipe(clean());
+  .pipe(plugins.clean());
 });
 
 gulp.task('clean:html', function () {
   gulp.src(['public/*.*','!public/readme.md'], {read:false})
-  .pipe(clean());
+  .pipe(plugins.clean());
 });
 
 gulp.task('html', ['clean:html'], function  () {
